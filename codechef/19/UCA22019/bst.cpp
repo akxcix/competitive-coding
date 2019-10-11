@@ -67,12 +67,14 @@ class BST{
             cout<<root->key<<" ";
         }
     }
-    void search(Node* root, int x){
+    Node* search(Node* root, int x){
         if(root == NULL){
             cout<<"Not Found"<<endl;
+            return NULL;
         }
         else if(root->key == x){
             cout<<"Found "<<x<<endl;
+            return root;
         }
         else if(x > root->key){
             search(root->rchild, x);
@@ -80,6 +82,11 @@ class BST{
         else if(x < root->key){
             search(root->lchild, x);
         }
+        else
+        {
+            return NULL;
+        }
+        
     }
 
 };
@@ -104,7 +111,8 @@ int main(){
     for(int i=0;i<n;i++){
         cout<<"Enter value to search: ";
         cin>>temp;
-        tree.search(tree.root, temp);
+        Node* addr = tree.search(tree.root, temp);
+        cout<<addr->key<<endl;
     }
     return 0;
 }
